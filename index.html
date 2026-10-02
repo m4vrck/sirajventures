@@ -209,7 +209,7 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
 }
 .stat{padding:0 24px 0; border-left:1px solid var(--stone);}
 .stat:first-child{border-left:none; padding-left:0;}
-.stat .num{font-size:clamp(2.2rem, 2.8vw, 2.8rem); font-weight:600; letter-spacing:-0.01em;}
+.stat .num{font-size:clamp(2.2rem, 2.8vw, 2.8rem); font-weight:600; letter-spacing:-0.01em; font-variant-numeric:tabular-nums; display:inline-block;}
 .stat .label{font-size:0.86rem; color:var(--muted); margin-top:8px; max-width:20ch; line-height:1.45;}
 @media (max-width:900px){
   .hero{padding:32px 0 0;}
@@ -229,7 +229,7 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
 }
 .opp-stat{padding:22px 24px; border-bottom:1px solid rgba(244,241,234,0.15); border-right:1px solid rgba(244,241,234,0.15);}
 .opp-stat:nth-child(3n){border-right:none;}
-.opp-stat .num{font-size:1.9rem; font-weight:600;}
+.opp-stat .num{font-size:1.9rem; font-weight:600; font-variant-numeric:tabular-nums; display:inline-block;}
 .opp-stat .label{font-size:0.85rem; opacity:0.75; margin-top:8px; max-width:22ch; line-height:1.45;}
 @media (max-width:800px){
   .opp-grid{grid-template-columns:repeat(2,1fr);}
@@ -2317,6 +2317,126 @@ initMeshShader('fahadShaderCanvas');
     if(e.key === 'Escape' && modal.classList.contains('is-open')){
       closeVideo();
     }
+  });
+})();
+
+// Animated Statistics Count-Up Controller
+(function(){
+  function parseNumber(text) {
+    text = text.trim();
+    var match = text.match(/^([^\d]*)([\d,\.]+)(.*)$/);
+    if (!match) return null;
+    var prefix = match[1];
+    var numStr = match[2];
+    var suffix = match[3];
+    var hasCommas = numStr.indexOf(',') !== -1;
+    var rawNum = parseFloat(numStr.replace(/,/g, ''));
+    var decimals = 0;
+    if (numStr.indexOf('.') !== -1) {
+      decimals = numStr.split('.')[1].length;
+    }
+    return {
+      prefix: prefix,
+      target: rawNum,
+      suffix: suffix,
+      hasCommas: hasCommas,
+      decimals: decimals,
+      original: text
+    };
+  }
+
+  function formatValue(current, info) {
+    var formatted = current.toFixed(info.decimals);
+    if (info.hasCommas) {
+      var parts = formatted.split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      formatted = parts.join('.');
+    }
+    return info.prefix + formatted + info.suffix;
+  }
+
+  function easeOutCubic(x) {
+    return 1 - Math.pow(1 - x, 3);
+  }
+
+  function animateCounter(el, info, delay) {
+    setTimeout(function(){
+      var startTime = null;
+      var duration = Math.min(1800, Math.max(1200, Math.log10(info.target + 1) * 350 + 800));
+
+      function step(now) {
+        if (!startTime) startTime = now;
+        var progress = Math.min((now - startTime) / duration, 1);
+        var eased = easeOutCubic(progress);
+        var current = eased * info.target;
+
+        if (info.decimals === 0) {
+          current = Math.floor(current);
+        }
+        if (progress >= 1) {
+          current = info.target;
+        }
+
+        el.textContent = formatValue(current, info);
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = info.original;
+          el.classList.add('is-counted');
+        }
+      }
+
+      requestAnimationFrame(step);
+    }, delay || 0);
+  }
+
+  var statElements = document.querySelectorAll('.stat .num, .opp-stat .num');
+  if (!statElements.length) return;
+
+  var statsData = [];
+  statElements.forEach(function(el, idx){
+    var info = parseNumber(el.textContent);
+    if (info) {
+      statsData.push({ el: el, info: info, idx: idx, animated: false });
+      el.textContent = formatValue(0, info);
+    }
+  });
+
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    statsData.forEach(function(item){
+      item.el.textContent = item.info.original;
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries, obs){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var data = statsData.find(function(d){ return d.el === el; });
+        if (data && !data.animated) {
+          data.animated = true;
+          var parent = el.closest('.stat-row, .opp-grid');
+          var siblingIndex = 0;
+          if (parent) {
+            var siblings = Array.from(parent.querySelectorAll('.num'));
+            siblingIndex = siblings.indexOf(el);
+          }
+          var delay = Math.max(0, siblingIndex) * 90;
+          animateCounter(el, data.info, delay);
+          obs.unobserve(el);
+        }
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -20px 0px'
+  });
+
+  statsData.forEach(function(item){
+    observer.observe(item.el);
   });
 })();
 </script>
