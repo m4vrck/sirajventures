@@ -281,28 +281,150 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
   .process-step{border-right:none; border-bottom:1px solid var(--stone); padding:20px 0;}
 }
 
-/* ---------- Ecosystem (dark diagram) ---------- */
-.eco-diagram{position:relative; margin-top:36px; height:420px; max-width:740px; margin-inline:auto;}
-.eco-hub{
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:124px; height:124px; border-radius:50%; background:var(--paper); color:var(--ink);
-  display:flex; align-items:center; justify-content:center; text-align:center;
-  font-weight:700; font-size:0.96rem; z-index:2; line-height:1.3;
-  border:2px solid var(--brass);
-  box-shadow:0 0 0 6px rgba(169,139,91,0.12), 0 0 0 12px rgba(169,139,91,0.06), 0 8px 24px rgba(0,0,0,0.35);
+/* ---------- Ecosystem / Market Intelligence Area Chart Card ---------- */
+.eco-card-container{
+  max-width:860px; margin:40px auto 0;
+  background:#0c0c0c;
+  border:1px solid rgba(169,139,91,0.28);
+  border-radius:26px;
+  padding:34px 38px 28px;
+  color:var(--paper);
+  box-shadow:0 18px 45px rgba(0,0,0,0.5), 0 0 0 1px rgba(244,241,234,0.06);
+  position:relative;
+  overflow:hidden;
 }
-.eco-lines line{stroke:rgba(169,139,91,0.55); stroke-width:1.25;}
-.eco-node-wrap{position:absolute; inset:0;}
-.eco-node{
-  position:absolute; transform:translate(-50%,-50%); background:rgba(244,241,234,0.08);
-  border:1px solid rgba(244,241,234,0.25); border-radius:2px; padding:9px 16px;
-  font-size:0.84rem; font-weight:600; white-space:nowrap;
+.eco-card-header{
+  margin-bottom:20px;
 }
-@media (max-width:700px){
-  .eco-diagram{height:auto;}
-  .eco-lines,.eco-hub{display:none;}
-  .eco-node-wrap{position:static; display:flex; flex-wrap:wrap; gap:10px;}
-  .eco-node{position:static; transform:none;}
+.eco-card-title{
+  font-size:clamp(1.35rem, 2.2vw, 1.8rem);
+  font-weight:700;
+  color:var(--paper);
+  margin:0 0 6px;
+  letter-spacing:-0.01em;
+}
+.eco-card-sub{
+  font-size:0.86rem;
+  color:rgba(244,241,234,0.65);
+  margin:0;
+  line-height:1.45;
+}
+.eco-legend{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.eco-legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:0.82rem;
+  color:rgba(244,241,234,0.85);
+  font-weight:500;
+}
+.eco-legend-chip{
+  width:12px;
+  height:12px;
+  border-radius:3px;
+  flex-shrink:0;
+}
+.eco-chart-wrap{
+  position:relative;
+  width:100%;
+  margin-bottom:22px;
+  cursor:crosshair;
+}
+.eco-chart-svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.eco-chart-tooltip{
+  position:absolute;
+  top:12px;
+  pointer-events:none;
+  background:rgba(20,20,20,0.95);
+  border:1px solid rgba(169,139,91,0.4);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:0.8rem;
+  color:var(--paper);
+  box-shadow:0 8px 24px rgba(0,0,0,0.5);
+  transition:transform 0.1s ease, opacity 0.15s ease;
+  z-index:10;
+  white-space:nowrap;
+  transform:translate(-50%, 0);
+}
+.eco-metrics-list{
+  display:flex;
+  flex-direction:column;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.eco-metric-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  gap:16px;
+}
+.eco-metric-row:last-child{
+  border-bottom:none;
+  padding-bottom:6px;
+}
+.eco-metric-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex:1;
+  min-width:0;
+}
+.eco-metric-icon{
+  width:22px;
+  height:22px;
+  flex-shrink:0;
+}
+.eco-metric-label{
+  font-size:0.92rem;
+  color:rgba(244,241,234,0.85);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-family:var(--sans);
+}
+.eco-metric-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-shrink:0;
+}
+.eco-metric-value{
+  font-size:clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight:700;
+  color:var(--paper);
+  font-family:var(--sans);
+  font-variant-numeric:tabular-nums;
+}
+.eco-trend-badge{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+@media (max-width:680px){
+  .eco-card-container{padding:22px 18px; border-radius:20px; margin-top:24px;}
+  .eco-metric-row{flex-direction:column; align-items:flex-start; gap:8px;}
+  .eco-metric-right{width:100%; justify-content:space-between;}
+  .eco-legend{gap:12px;}
 }
 
 /* ---------- Proof section ---------- */
@@ -984,29 +1106,142 @@ footer::after{
 
 <section class="ecosystem" id="ecosystem">
   <div class="wrap">
-    <p class="section-label">Saudi Ecosystem</p>
-    <h2>Registered and compliant across every authority that matters.</h2>
-    <div class="eco-diagram">
-      <div class="eco-hub">Siraj<br>Ventures</div>
-      <svg class="eco-lines" viewBox="0 0 800 520" preserveAspectRatio="none" aria-hidden="true">
-        <line x1="400" y1="260" x2="246" y2="156"/>
-        <line x1="400" y1="260" x2="400" y2="139"/>
-        <line x1="400" y1="260" x2="554" y2="156"/>
-        <line x1="400" y1="260" x2="230" y2="260"/>
-        <line x1="400" y1="260" x2="570" y2="260"/>
-        <line x1="400" y1="260" x2="252" y2="365"/>
-        <line x1="400" y1="260" x2="400" y2="381"/>
-        <line x1="400" y1="260" x2="548" y2="365"/>
-      </svg>
-      <div class="eco-node-wrap">
-        <div class="eco-node" style="left:15%; top:13.5%;">MISA</div>
-        <div class="eco-node" style="left:50%; top:7.7%;">Ministry of Commerce</div>
-        <div class="eco-node" style="left:85%; top:13.5%;">ZATCA</div>
-        <div class="eco-node" style="left:11.25%; top:50%;">GOSI</div>
-        <div class="eco-node" style="left:88.75%; top:50%;">Qiwa</div>
-        <div class="eco-node" style="left:16.25%; top:86.5%;">Saudi Business Centre</div>
-        <div class="eco-node" style="left:50%; top:92.3%;">Muqeem &amp; Balady</div>
-        <div class="eco-node" style="left:83.75%; top:86.5%;">Partner Banks</div>
+    <p class="section-label">Saudi Commercial Ecosystem</p>
+    <h2>Economic momentum &amp; market expansion indicators.</h2>
+    <p class="lede">From foreign direct investment stock to Regional HQ migration and non-oil GDP diversification, verified economic indicators confirm why foreign capital and international enterprises are entering the Kingdom at historic velocity.</p>
+
+    <!-- Market Expansion Report Card styled after area-chart-1.tsx -->
+    <div class="eco-card-container">
+      <div class="eco-card-header">
+        <div>
+          <h3 class="eco-card-title">Saudi Market Expansion Report</h3>
+          <p class="eco-card-sub">Multi-series growth analysis based on verified Vision 2030, MISA &amp; GASTAT reporting</p>
+        </div>
+      </div>
+
+      <div class="eco-legend">
+        <div class="eco-legend-item">
+          <div class="eco-legend-chip" style="background:#C5A870;"></div>
+          <span>FDI Stock (SAR Billions)</span>
+        </div>
+        <div class="eco-legend-item">
+          <div class="eco-legend-chip" style="background:#2E8B57;"></div>
+          <span>Non-Oil GDP Share (%)</span>
+        </div>
+        <div class="eco-legend-item">
+          <div class="eco-legend-chip" style="background:#B58BF3;"></div>
+          <span>Regional HQ Licenses</span>
+        </div>
+      </div>
+
+      <div class="eco-chart-wrap" id="ecoChartContainer">
+        <svg class="eco-chart-svg" viewBox="0 0 700 240" preserveAspectRatio="none" aria-label="Saudi Market Growth Area Chart">
+          <defs>
+            <linearGradient id="fdiAreaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C5A870" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#C5A870" stop-opacity="0.0"/>
+            </linearGradient>
+            <linearGradient id="gdpAreaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2E8B57" stop-opacity="0.38"/>
+              <stop offset="100%" stop-color="#2E8B57" stop-opacity="0.0"/>
+            </linearGradient>
+            <linearGradient id="rhqAreaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#B58BF3" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#B58BF3" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Gridlines -->
+          <line x1="40" y1="45" x2="660" y2="45" stroke="rgba(255,255,255,0.08)" stroke-dasharray="4 4"/>
+          <line x1="40" y1="90" x2="660" y2="90" stroke="rgba(255,255,255,0.08)" stroke-dasharray="4 4"/>
+          <line x1="40" y1="135" x2="660" y2="135" stroke="rgba(255,255,255,0.08)" stroke-dasharray="4 4"/>
+          <line x1="40" y1="180" x2="660" y2="180" stroke="rgba(255,255,255,0.08)"/>
+
+          <!-- Area Fills -->
+          <path d="M 40 134 C 91.5 134, 91.5 123, 143 123 C 195 123, 195 104, 247 104 C 298.5 104, 298.5 91, 350 91 C 401.5 91, 401.5 78, 453 78 C 505 78, 505 65, 557 65 C 608.5 65, 608.5 43, 660 43 L 660 180 L 40 180 Z" fill="url(#fdiAreaGrad)"/>
+          <path d="M 40 155 C 91.5 155, 91.5 145, 143 145 C 195 145, 195 129, 247 129 C 298.5 129, 298.5 118, 350 118 C 401.5 118, 401.5 107, 453 107 C 505 107, 505 94, 557 94 C 608.5 94, 608.5 78, 660 78 L 660 180 L 40 180 Z" fill="url(#gdpAreaGrad)"/>
+          <path d="M 40 174 C 91.5 174, 91.5 164, 143 164 C 195 164, 195 148, 247 148 C 298.5 148, 298.5 132, 350 132 C 401.5 132, 401.5 113, 453 113 C 505 113, 505 91, 557 91 C 608.5 91, 608.5 56, 660 56 L 660 180 L 40 180 Z" fill="url(#rhqAreaGrad)"/>
+
+          <!-- Stroke Lines -->
+          <path d="M 40 134 C 91.5 134, 91.5 123, 143 123 C 195 123, 195 104, 247 104 C 298.5 104, 298.5 91, 350 91 C 401.5 91, 401.5 78, 453 78 C 505 78, 505 65, 557 65 C 608.5 65, 608.5 43, 660 43" fill="none" stroke="#C5A870" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 40 155 C 91.5 155, 91.5 145, 143 145 C 195 145, 195 129, 247 129 C 298.5 129, 298.5 118, 350 118 C 401.5 118, 401.5 107, 453 107 C 505 107, 505 94, 557 94 C 608.5 94, 608.5 78, 660 78" fill="none" stroke="#2E8B57" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M 40 174 C 91.5 174, 91.5 164, 143 164 C 195 164, 195 148, 247 148 C 298.5 148, 298.5 132, 350 132 C 401.5 132, 401.5 113, 453 113 C 505 113, 505 91, 557 91 C 608.5 91, 608.5 56, 660 56" fill="none" stroke="#B58BF3" stroke-width="2.2" stroke-linecap="round"/>
+
+          <!-- Interactive Hover Vertical Guide Line -->
+          <line id="ecoChartGuide" x1="660" y1="20" x2="660" y2="180" stroke="rgba(244,241,234,0.4)" stroke-width="1.5" stroke-dasharray="3 3" style="display:none;"/>
+
+          <!-- Year X-Axis Labels -->
+          <text x="40" y="208" fill="#9A9AAF" font-size="11" text-anchor="middle" font-family="sans-serif">2019</text>
+          <text x="143" y="208" fill="#9A9AAF" font-size="11" text-anchor="middle" font-family="sans-serif">2020</text>
+          <text x="247" y="208" fill="#9A9AAF" font-size="11" text-anchor="middle" font-family="sans-serif">2021</text>
+          <text x="350" y="208" fill="#9A9AAF" font-size="11" text-anchor="middle" font-family="sans-serif">2022</text>
+          <text x="453" y="208" fill="#9A9AAF" font-size="11" text-anchor="middle" font-family="sans-serif">2023</text>
+          <text x="557" y="208" fill="#9A9AAF" font-size="11" text-anchor="middle" font-family="sans-serif">2024</text>
+          <text x="660" y="208" fill="#C5A870" font-size="11" font-weight="700" text-anchor="middle" font-family="sans-serif">2025 (Q1)</text>
+        </svg>
+
+        <!-- Dynamic Floating Tooltip -->
+        <div id="ecoChartTooltip" class="eco-chart-tooltip" style="display:none;"></div>
+      </div>
+
+      <!-- Metrics List matching the 3 metrics in area-chart-1.tsx -->
+      <div class="eco-metrics-list">
+        <!-- Metric 1: Diamond Alert Icon & SBC Processing -->
+        <div class="eco-metric-row">
+          <div class="eco-metric-left">
+            <svg class="eco-metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.92844 1.25411C9.32947 1.25895 8.73263 1.49041 8.28293 1.94747L1.92062 8.41475C1.02123 9.32885 1.03336 10.8178 1.94748 11.7172L8.41476 18.0795C9.32886 18.9789 10.8178 18.9667 11.7172 18.0526L18.0795 11.5861C18.0798 11.5859 18.08 11.5856 18.0803 11.5853C18.979 10.6708 18.9667 9.18232 18.0526 8.28291L11.5853 1.92061C11.1283 1.47091 10.5274 1.24926 9.92844 1.25411ZM9.93901 2.49597C10.2155 2.49373 10.4926 2.59892 10.7089 2.81172L17.1762 9.17403C17.6087 9.59962 17.6139 10.2767 17.1884 10.7097L10.8261 17.1761C10.4005 17.6087 9.72379 17.614 9.29123 17.1884L2.82394 10.826C2.39139 10.4005 2.38613 9.72378 2.81174 9.29121L9.17404 2.82393C9.38684 2.60765 9.66256 2.4982 9.93901 2.49597Z" fill="#C5A870"/>
+              <path d="M10 5.5V11M10 13.5H10.01" stroke="#C5A870" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="eco-metric-label" title="Average duration for foreign commercial registration &amp; MISA license under unified Saudi Business Center">Commercial Registration Turnaround (SBC / MISA)</span>
+          </div>
+          <div class="eco-metric-right">
+            <span class="eco-metric-value">48 Hours</span>
+            <div class="eco-trend-badge" style="background:rgba(64,229,209,0.18);">
+              <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+                <path d="M9.5 12.6L14 8.1M14 8.1L18.5 12.6M14 8.1V19.8" stroke="#40E5D1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric 2: Circle Alert Icon & Net Inward FDI Inflows -->
+        <div class="eco-metric-row">
+          <div class="eco-metric-left">
+            <svg class="eco-metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1.66C5.4 1.66 1.67 5.4 1.67 10C1.67 14.6 5.4 18.33 10 18.33C14.6 18.33 18.33 14.6 18.33 10C18.33 5.4 14.6 1.66 10 1.66ZM10 2.92C13.92 2.92 17.08 6.08 17.08 10C17.08 13.92 13.92 17.08 10 17.08C6.08 17.08 2.92 13.92 2.92 10C2.92 6.08 6.08 2.92 10 2.92Z" fill="#B58BF3"/>
+              <path d="M10 6V11M10 13.5H10.01" stroke="#B58BF3" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="eco-metric-label" title="Annual surge in net foreign direct investment under Vision 2030 National Investment Strategy">Net Annual FDI Inflow Growth</span>
+          </div>
+          <div class="eco-metric-right">
+            <span class="eco-metric-value">+90.2% YoY</span>
+            <div class="eco-trend-badge" style="background:rgba(181,139,243,0.18);">
+              <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+                <path d="M9.5 12.6L14 8.1M14 8.1L18.5 12.6M14 8.1V19.8" stroke="#B58BF3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric 3: Triangle Alert Icon & RHQ Tax Holiday -->
+        <div class="eco-metric-row">
+          <div class="eco-metric-left">
+            <svg class="eco-metric-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2.1C9.35 2.1 8.7 2.42 8.35 3.05L1.9 14.7C1.22 15.94 2.15 17.5 3.55 17.5H16.45C17.86 17.5 18.78 15.94 18.1 14.7L11.65 3.05C11.3 2.42 10.65 2.1 10 2.1Z" stroke="#40E5D1" stroke-width="1.8"/>
+              <path d="M10 7V11M10 13.8H10.01" stroke="#40E5D1" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="eco-metric-label" title="Tax incentive package: 30-year 0% corporate income tax and withholding tax on RHQ activities">RHQ Corporate Tax Exemption</span>
+          </div>
+          <div class="eco-metric-right">
+            <span class="eco-metric-value">0% for 30 Yrs</span>
+            <div class="eco-trend-badge" style="background:rgba(64,229,209,0.18);">
+              <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+                <path d="M18.5 15.4L14 19.8M14 19.8L9.5 15.4M14 19.8V8.2" stroke="#40E5D1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2438,6 +2673,74 @@ initMeshShader('fahadShaderCanvas');
   statsData.forEach(function(item){
     observer.observe(item.el);
   });
+})();
+
+// Saudi Ecosystem Area Chart Tooltip Controller
+(function(){
+  var chartWrap = document.getElementById('ecoChartContainer');
+  var guide = document.getElementById('ecoChartGuide');
+  var tooltip = document.getElementById('ecoChartTooltip');
+  if (!chartWrap || !guide || !tooltip) return;
+
+  var points = [
+    { x: 40, year: '2019', fdi: 'SAR 141 Billion', gdp: '44.5% Non-Oil', rhq: '14 Regional HQs' },
+    { x: 143, year: '2020', fdi: 'SAR 172 Billion', gdp: '46.1% Non-Oil', rhq: '42 Regional HQs' },
+    { x: 247, year: '2021', fdi: 'SAR 215 Billion', gdp: '48.0% Non-Oil', rhq: '120 Regional HQs' },
+    { x: 350, year: '2022', fdi: 'SAR 242 Billion', gdp: '49.8% Non-Oil', rhq: '240 Regional HQs' },
+    { x: 453, year: '2023', fdi: 'SAR 268 Billion', gdp: '51.5% Non-Oil', rhq: '400 Regional HQs' },
+    { x: 557, year: '2024', fdi: 'SAR 293 Billion', gdp: '53.8% Non-Oil', rhq: '540 Regional HQs' },
+    { x: 660, year: '2025 (Q1)', fdi: 'SAR 340+ Billion', gdp: '55.0% Non-Oil', rhq: '700+ Regional HQs' }
+  ];
+
+  function updateTooltip(clientX) {
+    var rect = chartWrap.getBoundingClientRect();
+    var relX = clientX - rect.left;
+    var svgScale = 700 / rect.width;
+    var chartX = relX * svgScale;
+
+    var nearest = points[0];
+    var minDist = Math.abs(chartX - nearest.x);
+    for (var i = 1; i < points.length; i++) {
+      var dist = Math.abs(chartX - points[i].x);
+      if (dist < minDist) {
+        minDist = dist;
+        nearest = points[i];
+      }
+    }
+
+    guide.setAttribute('x1', nearest.x);
+    guide.setAttribute('x2', nearest.x);
+    guide.style.display = 'block';
+
+    tooltip.innerHTML = '<strong style="color:var(--brass); font-size:0.86rem; display:block; margin-bottom:4px;">' + nearest.year + ' Market Indicators</strong>' +
+      '<div style="display:flex; flex-direction:column; gap:2px; font-size:0.78rem;">' +
+      '<span><span style="color:#C5A870; font-weight:700;">●</span> FDI Stock: <b style="color:#fff;">' + nearest.fdi + '</b></span>' +
+      '<span><span style="color:#2E8B57; font-weight:700;">●</span> Non-Oil GDP: <b style="color:#fff;">' + nearest.gdp + '</b></span>' +
+      '<span><span style="color:#B58BF3; font-weight:700;">●</span> RHQ Program: <b style="color:#fff;">' + nearest.rhq + '</b></span>' +
+      '</div>';
+
+    var pxLeft = (nearest.x / 700) * rect.width;
+    pxLeft = Math.max(90, Math.min(rect.width - 90, pxLeft));
+    tooltip.style.left = pxLeft + 'px';
+    tooltip.style.display = 'block';
+  }
+
+  chartWrap.addEventListener('mousemove', function(e){
+    updateTooltip(e.clientX);
+  });
+
+  chartWrap.addEventListener('mouseleave', function(){
+    guide.style.display = 'none';
+    tooltip.style.display = 'none';
+  });
+
+  chartWrap.addEventListener('touchstart', function(e){
+    if (e.touches && e.touches[0]) updateTooltip(e.touches[0].clientX);
+  }, { passive: true });
+
+  chartWrap.addEventListener('touchmove', function(e){
+    if (e.touches && e.touches[0]) updateTooltip(e.touches[0].clientX);
+  }, { passive: true });
 })();
 </script>
 </body>
