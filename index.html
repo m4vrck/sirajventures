@@ -281,15 +281,15 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
   .process-step{border-right:none; border-bottom:1px solid var(--stone); padding:20px 0;}
 }
 
-/* ---------- Ecosystem / Market Intelligence Area Chart Card (Light & Green Luxury) ---------- */
+/* ---------- Ecosystem / Market Intelligence Area Chart Card (Sand & Palm Harmony) ---------- */
 .eco-card-container{
   max-width:860px; margin:40px auto 0;
-  background:linear-gradient(180deg, #FFFFFF 0%, #F9FAF8 100%);
-  border:1px solid rgba(23,60,50,0.18);
+  background:linear-gradient(180deg, #FAF7F2 0%, #EBE4D8 100%);
+  border:1px solid rgba(169,139,91,0.30);
   border-radius:26px;
   padding:34px 38px 28px;
   color:var(--ink);
-  box-shadow:0 16px 40px rgba(23,60,50,0.08), 0 2px 8px rgba(0,0,0,0.03);
+  box-shadow:0 18px 45px rgba(23,60,50,0.07), 0 2px 8px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.85);
   position:relative;
   overflow:hidden;
 }
@@ -305,7 +305,7 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
 }
 .eco-card-sub{
   font-size:0.88rem;
-  color:#526961;
+  color:var(--muted);
   margin:0;
   line-height:1.45;
 }
@@ -316,14 +316,14 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
   flex-wrap:wrap;
   margin-bottom:22px;
   padding-bottom:16px;
-  border-bottom:1px solid rgba(23,60,50,0.1);
+  border-bottom:1px solid rgba(216,210,199,0.85);
 }
 .eco-legend-item{
   display:flex;
   align-items:center;
   gap:8px;
   font-size:0.84rem;
-  color:#273E36;
+  color:var(--palm);
   font-weight:600;
 }
 .eco-legend-chip{
@@ -347,15 +347,15 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
   position:absolute;
   top:12px;
   pointer-events:none;
-  background:rgba(255,255,255,0.97);
-  border:1px solid rgba(23,60,50,0.22);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  border-radius:10px;
+  background:rgba(250,247,242,0.98);
+  border:1px solid rgba(169,139,91,0.35);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-radius:12px;
   padding:10px 14px;
   font-size:0.8rem;
   color:var(--ink);
-  box-shadow:0 10px 30px rgba(23,60,50,0.15);
+  box-shadow:0 12px 30px rgba(23,60,50,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
   transition:transform 0.1s ease, opacity 0.15s ease;
   z-index:10;
   white-space:nowrap;
@@ -364,14 +364,14 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
 .eco-metrics-list{
   display:flex;
   flex-direction:column;
-  border-top:1px solid rgba(23,60,50,0.1);
+  border-top:1px solid rgba(216,210,199,0.85);
 }
 .eco-metric-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:16px 0;
-  border-bottom:1px solid rgba(23,60,50,0.1);
+  border-bottom:1px solid rgba(216,210,199,0.85);
   gap:16px;
 }
 .eco-metric-row:last-child{
@@ -1153,10 +1153,10 @@ footer::after{
           </defs>
 
           <!-- Gridlines -->
-          <line x1="40" y1="45" x2="660" y2="45" stroke="rgba(23,60,50,0.08)" stroke-dasharray="4 4"/>
-          <line x1="40" y1="90" x2="660" y2="90" stroke="rgba(23,60,50,0.08)" stroke-dasharray="4 4"/>
-          <line x1="40" y1="135" x2="660" y2="135" stroke="rgba(23,60,50,0.08)" stroke-dasharray="4 4"/>
-          <line x1="40" y1="180" x2="660" y2="180" stroke="rgba(23,60,50,0.14)"/>
+          <line x1="40" y1="45" x2="660" y2="45" stroke="rgba(216,210,199,0.85)" stroke-dasharray="4 4"/>
+          <line x1="40" y1="90" x2="660" y2="90" stroke="rgba(216,210,199,0.85)" stroke-dasharray="4 4"/>
+          <line x1="40" y1="135" x2="660" y2="135" stroke="rgba(216,210,199,0.85)" stroke-dasharray="4 4"/>
+          <line x1="40" y1="180" x2="660" y2="180" stroke="rgba(23,60,50,0.18)"/>
 
           <!-- Area Fills -->
           <path d="M 40 134 C 91.5 134, 91.5 123, 143 123 C 195 123, 195 104, 247 104 C 298.5 104, 298.5 91, 350 91 C 401.5 91, 401.5 78, 453 78 C 505 78, 505 65, 557 65 C 608.5 65, 608.5 43, 660 43 L 660 180 L 40 180 Z" fill="url(#fdiAreaGrad)"/>
@@ -1172,12 +1172,12 @@ footer::after{
           <line id="ecoChartGuide" x1="660" y1="20" x2="660" y2="180" stroke="rgba(23,60,50,0.35)" stroke-width="1.5" stroke-dasharray="3 3" style="display:none;"/>
 
           <!-- Year X-Axis Labels -->
-          <text x="40" y="208" fill="#5A746B" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2019</text>
-          <text x="143" y="208" fill="#5A746B" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2020</text>
-          <text x="247" y="208" fill="#5A746B" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2021</text>
-          <text x="350" y="208" fill="#5A746B" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2022</text>
-          <text x="453" y="208" fill="#5A746B" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2023</text>
-          <text x="557" y="208" fill="#5A746B" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2024</text>
+          <text x="40" y="208" fill="#5C574E" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2019</text>
+          <text x="143" y="208" fill="#5C574E" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2020</text>
+          <text x="247" y="208" fill="#5C574E" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2021</text>
+          <text x="350" y="208" fill="#5C574E" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2022</text>
+          <text x="453" y="208" fill="#5C574E" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2023</text>
+          <text x="557" y="208" fill="#5C574E" font-size="11" font-weight="500" text-anchor="middle" font-family="sans-serif">2024</text>
           <text x="660" y="208" fill="#173C32" font-size="11" font-weight="700" text-anchor="middle" font-family="sans-serif">2025 (Q1)</text>
         </svg>
 
