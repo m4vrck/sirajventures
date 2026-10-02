@@ -170,27 +170,57 @@ header nav{display:flex; align-items:center; justify-content:space-between; heig
 .kicker svg{width:14px; height:14px;}
 
 /* ---------- Hero (dense, editorial, metadata grid) ---------- */
-.hero{padding:56px 0 0; position:relative; overflow:hidden;}
+.hero{
+  min-height:calc(100vh - 68px);
+  min-height:calc(100dvh - 68px);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:48px 0 0;
+  box-sizing:border-box;
+  position:relative;
+  overflow:hidden;
+}
 .hero-mesh,.hero-pattern,.blob{display:none;}
-.hero-inner{max-width:860px;}
-.hero h1{font-size:clamp(2.5rem, 5.2vw, 4.2rem); line-height:1.08; letter-spacing:-0.02em; max-width:16ch;}
+.hero-inner{
+  max-width:920px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:32px 0 24px;
+}
+.hero h1{font-size:clamp(2.75rem, 5.5vw, 4.5rem); line-height:1.1; letter-spacing:-0.02em; max-width:17ch;}
 .hero h1 .word{display:inline-block; opacity:1; animation:none;}
-.hero .lede{font-size:1.14rem; max-width:60ch; margin-top:16px;}
-.hero-cta{display:flex; align-items:center; gap:22px; margin-top:28px;}
-.link-quiet{font-weight:600; font-size:0.96rem; border-bottom:1px solid currentColor; padding-bottom:2px;}
+.hero .lede{font-size:clamp(1.14rem, 1.4vw, 1.28rem); max-width:62ch; margin-top:20px; line-height:1.6;}
+.hero-cta{display:flex; align-items:center; gap:24px; margin-top:34px;}
+.hero-cta .btn-whatsapp{padding:15px 32px; font-size:0.92rem;}
+.link-quiet{font-weight:600; font-size:0.98rem; border-bottom:1px solid currentColor; padding-bottom:2px;}
 .link-quiet:hover{color:var(--brass);}
 
 .stat-row{
-  margin-top:42px; padding-top:24px; border-top:1px solid var(--stone);
-  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  margin-top:auto;
+  padding-top:26px;
+  padding-bottom:30px;
+  border-top:1px solid var(--stone);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
 }
-.stat{padding:0 24px 28px; border-left:1px solid var(--stone);}
+.stat{padding:0 24px 0; border-left:1px solid var(--stone);}
 .stat:first-child{border-left:none; padding-left:0;}
-.stat .num{font-size:2.1rem; font-weight:600; letter-spacing:-0.01em;}
-.stat .label{font-size:0.85rem; color:var(--muted); margin-top:8px; max-width:20ch; line-height:1.45;}
+.stat .num{font-size:clamp(2.2rem, 2.8vw, 2.8rem); font-weight:600; letter-spacing:-0.01em;}
+.stat .label{font-size:0.86rem; color:var(--muted); margin-top:8px; max-width:20ch; line-height:1.45;}
 @media (max-width:900px){
-  .stat-row{grid-template-columns:repeat(2,1fr);}
-  .stat:nth-child(2n+1){border-left:none;}
+  .hero{padding:32px 0 0;}
+  .hero-inner{padding:20px 0;}
+  .stat-row{grid-template-columns:repeat(2,1fr); padding-bottom:24px; gap:20px 0;}
+  .stat{padding:0 16px;}
+  .stat:nth-child(2n+1){border-left:none; padding-left:0;}
+}
+@media (max-width:640px){
+  .hero-inner{justify-content:flex-start; padding-top:16px;}
+  .stat-row{margin-top:28px;}
 }
 
 /* ---------- Opportunity grid ---------- */
